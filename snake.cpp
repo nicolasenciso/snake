@@ -1,6 +1,5 @@
 #include <iostream>
 
-
 #define print(x) std::cout<<x<<std::endl;
 
 void startGame();
@@ -59,14 +58,34 @@ void printTable(char** table, int* rows, int* columns){
     }
 }
 
-
 void play(char** table, int* rows, int* columns){
 
+    // here pending make the first appeareance random
     int X = (*rows)/2;
     int Y = (*columns)/2;
+    table[X][Y + 1] = '>';
+    
     for(int i = 0; i < 5; i++){
         table[X][Y - i] = 'O';
     }
+
+    // make the food random appear
+    table[X + 3][Y + 3] = 'P';
+
     printTable(table, rows, columns);
+
+    /*
+        TO DO:
+
+        - I have to make sure retain the points
+        in which the snake exists
+
+        - Make the movement, updating the cells with a kind of
+        struct in which I save the snake cells
+
+        - Catcher of movement through keyboard
+
+        - Maybe add a score holder
+    */
     
 }
