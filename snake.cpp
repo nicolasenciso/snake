@@ -5,9 +5,12 @@
 
 void startGame();
 char** fillInitialTable(int* rows, int* columns);
+void play(char** table, int* rows, int* columns);
+void printTable(char** table, int* rows, int* columns);
 
 int main(){
 
+    system("clear");
     print("WELCOME");
     print("PRESS ANY LETTER AND ENTER BEGIN");
     
@@ -20,18 +23,16 @@ int main(){
     }else{
         print("ADIOS");
     }
-
 }
 
 void startGame(){
     int rows = 20;
     int columns = 60;
-    
-    char** table =  fillInitialTable(&rows, &columns);
-    for(int i = 0; i < rows; i++){
-        print(table[i]);
-    }
 
+    char** table =  fillInitialTable(&rows, &columns);
+    play(table, &rows, &columns);
+
+    delete table;
 }
 
 char** fillInitialTable(int* rows, int* columns){
@@ -46,9 +47,26 @@ char** fillInitialTable(int* rows, int* columns){
             }else{
                 table[i][j] = '_';
             }
-            
         }
     }
-
     return table;
+}
+
+void printTable(char** table, int* rows, int* columns){
+   
+    for(int i = 0; i < *rows; i++){
+        print(table[i]);
+    }
+}
+
+
+void play(char** table, int* rows, int* columns){
+
+    int X = (*rows)/2;
+    int Y = (*columns)/2;
+    for(int i = 0; i < 5; i++){
+        table[X][Y - i] = 'O';
+    }
+    printTable(table, rows, columns);
+    
 }
